@@ -57,6 +57,7 @@ public class ServiceTaskImpl implements ServiceTask {
     // TODO test unicité avec script de charge
     @Override
     public void addOne(AddTaskRequest req, MUser user) throws Existing, Empty, TooShort {
+        System.out.println("starting to add task");
         // valider que c'est non vide
         if (req.name.trim().length() == 0) throw new Empty();
         if (req.name.trim().length() < 2) throw new TooShort();
@@ -178,6 +179,19 @@ public class ServiceTaskImpl implements ServiceTask {
         }
 
         return response;
+    }
+
+    @Override
+    public void delete(long taskId, MUser user) {
+        // valider si la tâche existe
+        System.out.println("finding the task to delete");
+        for (MTask task : user.tasks){
+            if (task.id == taskId){
+                user.tasks.remove(task);
+                repo.deleteById(taskId);
+                break;
+            }
+        }
     }
 
 }

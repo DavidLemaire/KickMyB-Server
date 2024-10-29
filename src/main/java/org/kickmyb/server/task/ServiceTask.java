@@ -19,6 +19,7 @@ public interface ServiceTask {
     List<HomeItemResponse> home(Long userID);
     TaskDetailPhotoResponse detailPhoto(Long id, MUser user);
     List<HomeItemPhotoResponse> homePhoto(Long userID);
+    void delete(long taskId, MUser user);
 
     // Potential web demo for JS injection
     String index();

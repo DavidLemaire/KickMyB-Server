@@ -82,4 +82,12 @@ public class ControllerTask {
         UserDetails ud = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return serviceTask.userFromUsername(ud.getUsername());
     }
+
+    @PostMapping("/api/delete/{taskId}")
+    public @ResponseBody void delete(@PathVariable long taskId) {
+        System.out.println("KICKB SERVER : Deleting task ");
+        ConfigHTTP.attenteArticifielle();
+        MUser user = currentUser();
+        serviceTask.delete(taskId, user);
+    }
 }
