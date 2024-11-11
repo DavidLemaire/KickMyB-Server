@@ -25,7 +25,7 @@ public class MTask {
     @OneToMany(fetch=FetchType.EAGER)
     public List<MProgressEvent> events = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     public MPhoto photo;
 
 }
